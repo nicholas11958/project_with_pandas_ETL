@@ -19,11 +19,14 @@ conn1 = psycopg2.connect(
 while True:
     time.sleep(30)
     df = pd.read_sql_query('select * from "from_csv"',con=db)
+    #Вычисляем длинны df
     length = df.__len__()
+    #Группируем данные
     grouped_df = df.groupby(['Type', 'District'], as_index=False).agg({'TotalArea': 'mean', 'Price': 'mean'})
     grouped_df['Avg_Per_Sm'] = grouped_df.Price / grouped_df.TotalArea
     a = grouped_df
     a.rename(columns={'TotalArea': 'Avg_Total_Area', 'Price': 'Avg_Price'}, inplace=True)
+    #Данные с бесконечностью меняем на 0
     a = a.replace([np.inf, -np.inf], '0')
     a['Counf_Of_Ad'] = length
     print(a)
