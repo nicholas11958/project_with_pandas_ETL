@@ -25,7 +25,6 @@ while True:
     print('It`s empty')  
     time.sleep(1)
   else:
-
     new_filtered_df = filteted_df[['Type', 'District', 'Price', 'TotalArea']]
     check_nan = new_filtered_df.isnull().any().any()
     #Борьба с NAN значениями
