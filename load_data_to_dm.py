@@ -29,6 +29,5 @@ while True:
     #Данные с бесконечностью меняем на 0
     a = a.replace([np.inf, -np.inf], '0')
     a['Counf_Of_Ad'] = length
-    print(a)
     a.to_sql('dm', db, if_exists= 'replace', index=False)
 
