@@ -18,7 +18,7 @@ data = pd.read_csv("portugal_listinigs.csv")
 #Запускаем код в бесконечном цикле т.к. данные могут поступать бесконечно
 while True:
   df = data
-  df1 = df.sample(n=2)
+  df1 = df.sample(n=1)
   filteted_df = df1.query('Price < 50000 or TotalArea < 20') 
   #Из-за условия df может оказаться пустым
   if filteted_df.empty:
